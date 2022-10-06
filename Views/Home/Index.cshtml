@@ -1,0 +1,68 @@
+﻿@model IEnumerable<Callcenter.Models.consulta>
+
+@{
+    ViewBag.Title = "Callcenter";
+}
+
+<div class="jumbotron">
+    <h1>CALLCENTER</h1>
+    <p class="lead">Ingrese una cedula:</p>
+    <p style="font-size: 14px; ">
+        @Html.Editor("cedula")
+    </p>
+    <button id="btnBuscar">Buscar Pagos</button>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <table class="table table-bordered table-condensed table-striped">
+            <thead>
+                <tr>
+                    <th style="text-align:center">
+                        Cedula
+                    </th>
+                    <th style="text-align:center">
+                        Nombre
+                    </th>
+                    <th style="text-align:center">
+                        Fecha Pago
+                    </th>
+                    <th style="text-align:center">
+                        Monto
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                <tr>
+                    <td style="text-align:center">
+                        @Html.DisplayFor(modelItem => item.cedula)
+                    </td>
+                    <td style="text-align:center">
+                        @Html.DisplayFor(modelItem => item.nombreCompleto)
+                    </td>
+                    <td style="text-align:center">
+                        @Html.DisplayFor(modelItem => item.fechaPago)
+                    </td>
+                    <td style="text-align:center">
+                        @Html.DisplayFor(modelItem => item.monto)
+                    </td>
+                </tr>
+                }
+            </tbody>
+
+        </table>
+    </div>
+
+</div>
+
+<script>
+
+    document.getElementById("btnBuscar").onclick = function () {
+        let cedula = $("#cedula").val();
+
+        window.open("/Home/Index?cedula=" + cedula, "_self")
+    };
+
+</script>
